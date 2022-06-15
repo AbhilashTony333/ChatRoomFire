@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">ChatRoomFire</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="please_enter_email">Email</string>
+    <string name="sign_in">Sign In</string>
+    <string name="click_here_to_create_a_new_account">Click here to create a New Account</string>
+    <string name="enter_password">Password</string>
+    <string name="enter_profile_name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="gmail">\@gmail.com</string>
+    <string name="tony">Tony</string>
+    <string name="abh_gmail_com">abh@gmail.com</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="profile_name">Profile Name :</string>
+    <string name="email">Email :</string>
+    <string name="password">Password :</string>
+    <string name="no_signedin_account">No SignedIn Account</string>
+    <string name="uid">UID :</string>
+    <string name="signout">SignOut</string>
+</resources>
