@@ -1,19 +1,13 @@
 package com.example.chatroomfire
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
 import com.example.chatroomfire.databinding.FragmentMyAccountBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -32,15 +26,29 @@ class MyAccountFragment : Fragment(R.layout.fragment_my_account) {
 
 
 
-    private var profileData : UserDataClass =
+    private var profileData : UserDataClass = UserDataClass()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMyAccountBinding.bind(view)
         setUI()
-        myAccountViewModel.actDetails.observe(LifecycleOwner {
-
-        })
+        myAccountViewModel.actDetails.observe(viewLifecycleOwner){
+            when(it){
+                is Resource.Loading ->{
+                    binding.myaccountProgress.isVisible = true
+                }
+                is Resource.Success ->{
+                    binding.nameBind.text = it.data?.name.toString()
+                    binding.emailBind.text = it.data?.email.toString()
+                    binding.passwordBind.text = it.data?.password.toString()
+                    binding.myaccountProgress.isVisible = false
+                }
+                is Resource.Error -> {
+                    binding.nameBind.text = it.message.toString()
+                    binding.myaccountProgress.isVisible=false
+                }
+            }
+        }
     }
 
     private fun setUI() {

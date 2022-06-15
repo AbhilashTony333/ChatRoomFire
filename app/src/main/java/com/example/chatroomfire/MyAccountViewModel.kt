@@ -12,17 +12,15 @@ class MyAccountViewModel @Inject constructor(val repository: Repository) : ViewM
     private var _actDetails: MutableLiveData<Resource<UserDataClass>> = MutableLiveData()
     var actDetails: LiveData<Resource<UserDataClass>> = _actDetails
 
+
+
     fun accountUid(uid: String) {
 
         _actDetails.postValue(Resource.Loading())
-
-        kotlin.runCatching {
-
-            repository.getDetails(uid) { detail, mesg ->
-
-                if (detail)
-
-            }
+        repository.getDetails(uid){detail, mesg ->
+        if (detail.name?.isNotEmpty() == true){
+            _actDetails.postValue(Resource.Success(detail))
+        }else _actDetails.postValue(Resource.Error(mesg))
         }
     }
 }
