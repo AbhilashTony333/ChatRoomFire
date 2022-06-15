@@ -21,4 +21,5 @@
     <string name="no_signedin_account">No SignedIn Account</string>
     <string name="uid">UID :</string>
     <string name="signout">SignOut</string>
+    <string name="logo">logo</string>
 </resources>
